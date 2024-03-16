@@ -19,6 +19,7 @@
  */
 function shallowCopy(obj) {
   const empty = {};
+
   return Object.assign(empty, obj);
 }
 
@@ -42,6 +43,7 @@ function mergeObjects(objects) {
         acc[key] = value;
       }
     });
+
     return acc;
   }, {});
 }
@@ -59,8 +61,13 @@ function mergeObjects(objects) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, 'age') => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const copy = { ...obj };
+  keys.forEach((key) => {
+    delete copy[key];
+  });
+
+  return copy;
 }
 
 /**
